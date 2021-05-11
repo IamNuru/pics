@@ -1,24 +1,23 @@
-import logo from './logo.svg';
+
 import './App.css';
+import ProductState from './Components/context/picture/PictureState';
+import Header from './Components/picture/Header'
+import Pictures from './Components/picture/Pictures'
+import Search from './Components/picture/Search'
+import Footer from './Components/picture/Footer'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ProductState>
+      <div className="max-w-screen-sm m-auto h-screen flex flex-col">
+        <Header />
+        <Search />
+        <Pictures />
+      <div className="flex-grow"></div>
+        <Footer />
+      </div>
+      
+      </ProductState>
   );
 }
 
