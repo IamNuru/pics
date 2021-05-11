@@ -1,0 +1,8 @@
+.toggler{
+    float:right;
+    cursor:pointer;
+    display:none !important;
+    }
+.switchBtn:hover{
+    cursor:pointer
+    }
