@@ -12,7 +12,6 @@ const ToggleTheme = () => {
             minHeight:'70px',
             background:'#00D1E0',
             borderRadius:'3px',
-            top:'40px',
             right:'1px',
             display:'grid',
             gridTemplateRows:'1fr',
@@ -30,7 +29,7 @@ const ToggleTheme = () => {
         }
 
     return(
-        <div style={styleToggle}>
+        <div style={styleToggle} className="top-1 md:top-8">
             
             <div style={{background: isLightTheme ? light.ui : dumsor.ui}}>
 

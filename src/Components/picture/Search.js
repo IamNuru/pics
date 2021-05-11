@@ -4,12 +4,13 @@ import PictureContext  from '../context/picture/PictureContext'
 
 const Search = () => {
     const pictureContext = useContext(PictureContext);
-    const { getPictures } = pictureContext;
+    const { clearPictures, getPictures } = pictureContext;
 
 	const text = useRef('')
 
 	const onSubmit = (e) =>{
 		e.preventDefault();
+		clearPictures()
 		getPictures(text.current.value);
 	}
 
