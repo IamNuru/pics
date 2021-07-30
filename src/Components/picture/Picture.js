@@ -1,7 +1,14 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import PictureContext from '../context/picture/PictureContext';
+
 
 const Picture = (props) => {
-    const { webformatURL, userImageURL } = props.picture;
+    const { webformatURL, userImageURL, id } = props.picture;
+    const { getPicture } = useContext(PictureContext);
+
+    const getPic =  () =>{
+        getPicture(id)
+    }
 
     const userImage = {
         width: '40px',
@@ -9,7 +16,7 @@ const Picture = (props) => {
         borderRadius: '50%'
     }
     return (
-        <div className='shadow-md text-center rounded-lg h-48 transition delay-300 duration-300 ease-in-out hover:bg-gray-400 max-height-12 w-full'>
+        <div onClick={getPic} className='cursor-pointer shadow-md text-center rounded-lg h-48 transition delay-300 duration-300 ease-in-out hover:bg-gray-400 max-height-12 w-full'>
             {
                 !webformatURL ?
                     <div class="flex justify-around bg-gray-400 mb-2 h-full w-full">
@@ -23,7 +30,7 @@ const Picture = (props) => {
                         </span>
                     </div>
                 :
-                (<img src={webformatURL} alt="" srcSet="" className="w-full h-full"/>) 
+                (<img src={webformatURL} alt="" srcSet="" className="object-cover w-full h-full"/>) 
             }
             <div className="-mt-12 ml-4 z-10 text-white flex">Image By : {<img src={userImageURL} alt="owner" srcSet="" className="-mt-2" style={userImage}/>} </div>
         </div>

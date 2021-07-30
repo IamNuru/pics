@@ -3,7 +3,7 @@ import axios from "axios";
 import PictureReducer from './PictureReducer'
 import PictureContext from './PictureContext'
 
-import { GET_PICTURES, PICTURE_ERROR, CLEAR_PICTURES } from '../../types'
+import { GET_PICTURES, PICTURE_ERROR, CLEAR_PICTURES, SET_LOADING, GET_PICTURE } from '../../types'
 
 
 const PictureState = (props) => {
@@ -11,7 +11,9 @@ const PictureState = (props) => {
     const initialState = {
         pictures:null,
         loading:false,
-        picError:''
+        picture:null,
+        picError:'',
+        hits:0
     }
 
     const [state, dispatch] = useReducer(PictureReducer, initialState)
@@ -38,6 +40,15 @@ const PictureState = (props) => {
         }
 	};
 
+
+    //get a single picture
+    const getPicture = id =>{
+        dispatch({
+            type: GET_PICTURE,
+            payload: id
+        })
+    }
+
     //Clear Pictures
     const clearPictures = () =>{
         dispatch({
@@ -46,12 +57,23 @@ const PictureState = (props) => {
         })
     }
 
+    //set loading to tru
+    const setLoading = val =>{
+        dispatch({
+            type: SET_LOADING,
+            payload: val
+        })
+    }
+
     return (
         <PictureContext.Provider value={{
             pictures: state.pictures,
+            picture: state.picture,
             loading: state.loading,
             getPictures,
             clearPictures,
+            setLoading,
+            getPicture,
         }}>
             {props.children}
         </PictureContext.Provider>
