@@ -1,0 +1,44 @@
+.main-image{
+    height: calc(100% - 30px);
+    margin-bottom: 10px;
+}
+
+.picture-wrapper{
+    cursor: zoom-in;
+    
+}
+.picture-wrapper:hover .picture-desc{
+    color:white !important;
+
+}
+
+.pagination{
+    max-width: 20rem;
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
+    margin-top: 1.5rem;
+}
+.pagination > div{
+    color: white;
+    font-weight: 700;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 1.2rem;
+    padding: 5px;
+    border-radius: 2px;
+    min-width: 8rem;
+    max-width: 12rem;
+    text-align: center;
+}
+
+.explore{
+    display: flex;
+    justify-content: space-between;
+}
+.pageCount{
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    padding-right: 10px;
+    font-family: 'Times New Roman', Times, serif;
+}

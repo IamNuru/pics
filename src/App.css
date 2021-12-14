@@ -2,19 +2,25 @@
     float:right;
     cursor:pointer;
     display:none !important;
-    }
-    .switchBtn:hover{
+}
+.switchBtn:hover{
     cursor:pointer
+}
+
+
+
+
+
+
+
+@media only screen and (min-width: 600px) {
+    .pure-modal-backdrop .pure-modal{
+        min-width: 450px !important;
+        max-width: 640px !important;
     }
-    
-    @media only screen and (min-width: 600px) {
-        .pure-modal-backdrop .pure-modal{
-            min-width: 450px !important;
-            max-width: 640px !important;
-        }
+}
+@media only screen and (max-width: 450px) {
+    .pure-modal-backdrop .pure-modal{
+        max-width: 450px !important;
     }
-    @media only screen and (max-width: 450px) {
-        .pure-modal-backdrop .pure-modal{
-            max-width: 450px !important;
-        }
-    }
+}

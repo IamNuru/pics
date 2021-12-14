@@ -1,10 +1,8 @@
 import React, { Fragment, useContext, useEffect, useState } from "react";
 import Header from "../../Components/picture/Header";
 import Pictures from "../../Components/picture/Pictures";
-import Search from "../../Components/picture/Search";
 import Footer from "../../Components/picture/Footer";
 import ThemeContext from "../context/theme/ThemeContext";
-import bg from "../../bg.png";
 import PureModal from "react-pure-modal";
 import "react-pure-modal/dist/react-pure-modal.min.css";
 import PictureContext from "../context/picture/PictureContext";
@@ -25,9 +23,9 @@ const Home = () => {
     <Fragment>
       <div
         className={`${
-          isLightTheme ? "bg-gray-100" : "bg-white"
-        } max-w-screen-sm m-auto min-h-screen flex flex-col px-4 pt-1`}
-        style={{ backgroundImage: `url(${bg})` }}
+          isLightTheme ? "bg-gray-100" : "bg-red"
+        } mt-4 m-auto min-h-screen flex flex-col px-4 pt-1`}
+        /* style={{ backgroundImage: `url(${bg})` }} */
       >
         {picture !== null && (
           <PureModal
@@ -98,7 +96,6 @@ const Home = () => {
           </PureModal>
         )}
         <Header />
-        <Search />
         <Pictures />
         <div className="flex-grow"></div>
         <Footer />

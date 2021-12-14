@@ -1,31 +1,36 @@
-import React, { useRef, useContext } from 'react'
+import React, { useRef, useContext, useEffect } from 'react'
 import PictureContext  from '../context/picture/PictureContext'
 
 
 const Search = () => {
     const pictureContext = useContext(PictureContext);
-    const { clearPictures, getPictures, setLoading } = pictureContext;
+    const { searchPictures, setLoading, page } = pictureContext;
 
 	const text = useRef('')
 
 	const onSubmit = (e) =>{
 		e.preventDefault();
-		clearPictures()
 		setLoading(true)
-		getPictures(text.current.value);
+		searchPictures(text.current.value);
 	}
 
+	useEffect(() => {
+		searchPictures(text.current.value, page);
+		// eslint-disable-next-line
+	}, [page])
+
+
     return (
-        <div className="block shadow-md bg-pink-100 p-4">
+        <div className="block shadow-md w-full d-flex">
 			<form onSubmit={onSubmit} className="block">
 				<div className="mt-1">
 					<div className="flex">
 						<input
 							type="text"
 							name="storeName"
-							placeholder="Search for Image"
+							placeholder="What image are you looking for?"
 							id="name"
-							className=" ml-auto h-10 focus:ring-indigo-500 focus:border-indigo-500 block w-full
+							className="search-input ml-auto h-10 focus:ring-indigo-500 focus:border-indigo-500 block w-full
                             shadow-md sm:text-sm px-1 border-gray-300 mr-1"
 							required
 							ref={text}

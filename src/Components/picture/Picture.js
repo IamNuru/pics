@@ -1,22 +1,27 @@
 import React, { useContext } from 'react'
 import PictureContext from '../context/picture/PictureContext';
+import ThemeContext from '../context/theme/ThemeContext';
 
 
 const Picture = (props) => {
-    const { webformatURL, userImageURL, id } = props.picture;
+    const { webformatURL, userImageURL, id, user, downloads, likes } = props.picture;
     const { getPicture } = useContext(PictureContext);
+    const { isLightTheme } = useContext(ThemeContext);
 
     const getPic =  () =>{
         getPicture(id)
     }
 
     const userImage = {
-        width: '40px',
-        height: '40px',
+        width: '24px',
+        height: '24px',
         borderRadius: '50%'
     }
     return (
-        <div onClick={getPic} className='cursor-pointer shadow-md text-center rounded-lg h-48 transition delay-300 duration-300 ease-in-out hover:bg-gray-400 max-height-12 w-full'>
+        <div onClick={getPic} 
+        className={`picture-wrapper cursor-zoom-in shadow-md text-center rounded-lg h-56 
+        transition delay-200 duration-300 ease-in-out hover:bg-gray-500 max-height-24 
+        w-full p-2 d-block ${isLightTheme ? 'border-0' : 'bg-white'}`}>
             {
                 !webformatURL ?
                     <div class="flex justify-around bg-gray-400 mb-2 h-full w-full">
@@ -30,9 +35,36 @@ const Picture = (props) => {
                         </span>
                     </div>
                 :
-                (<img src={webformatURL} alt="" srcSet="" className="object-cover w-full h-full"/>) 
+                (<img src={webformatURL} alt="" srcSet="" 
+                className="main-image object-cover w-full rounded-md"/>) 
             }
-            <div className="-mt-12 ml-4 z-10 text-white flex">Image By : {<img src={userImageURL} alt="owner" srcSet="" className="-mt-2" style={userImage}/>} </div>
+            <div className={`picture-desc transition delay-300 ease-in-out z-10 flex 
+            place-content-between ${isLightTheme ? 'text-gray-600' : 'text-gray-900'}`}>
+                <div>
+                    <div className="flex justify-center align-center flex-start">
+                        {
+                            userImageURL ? 
+                            <img src={userImageURL} alt="owner" srcSet="" style={userImage}/>
+                            :
+                            <div className="bg-gray-400" style={userImage}>
+                                <i className="fa fa-user"></i>
+                            </div>
+                        } 
+                        <div className='pl-1'>{user}</div>
+                    </div>
+                </div>
+                <div className="flex">
+                    <div className="flex justify-center align-center mr-4">
+                        <i className="fa fa-download text-md flex align-center"></i>
+                        <div className="pl-1 text-sm font-700">{downloads}</div>
+                    </div>
+                    <div className="flex justify-center align-center">
+                        <i className="fa fa-heart text-md flex align-center"></i>
+                        <div className="pl-1 text-sm font-700">{likes}</div>
+                    </div>
+                </div>
+            </div>
+            {/* <div className="-mt-12 ml-4 z-10 text-white flex">Image By : {<img src={userImageURL} alt="owner" srcSet="" className="-mt-2" style={userImage}/>} </div> */}
         </div>
     )
 }
